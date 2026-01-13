@@ -1,0 +1,17 @@
+[mcp_servers.docs_server]
+# Use the absolute path from 'which uvx'
+command = "/opt/homebrew/bin/uvx"
+args = [
+    "--quiet", 
+    "--from", "mcpdoc", "mcpdoc", 
+    "--urls", 
+    "LangGraph:https://langchain-ai.github.io/langgraph/llms.txt",
+    "Tavily:https://docs.tavily.com/llms.txt",
+    "Shadcn:https://ui.shadcn.com/llms.txt"
+]
+# Crucial: Allow time for docs to be processed during handshake
+startup_timeout_ms = 30000
+
+[mcp_servers.playwright]
+command = "npx"
+args = ["-y", "@playwright/mcp@latest"]

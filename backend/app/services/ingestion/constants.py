@@ -1,0 +1,6 @@
+"""Ingestion limits per connector."""
+
+MAX_RSS_ITEMS = 10
+MAX_YOUTUBE_ITEMS = 2
+MAX_TWITTER_ITEMS = 5
+TAVILY_RESULTS_PER_TOPIC = 20
