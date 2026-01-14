@@ -26,7 +26,7 @@ A distraction-free daily brief system that aggregates content via connectors (RS
 
 ```bash
 # Copy environment template
-cp .env.example backend/.env
+cp backend/.env.example backend/.env
 
 # Edit backend/.env and add your API keys:
 # - GOOGLE_API_KEY
@@ -121,11 +121,3 @@ sigdig/
 Once the backend is running, visit:
 - Swagger UI: http://localhost:8000/docs
 - ReDoc: http://localhost:8000/redoc
-
-## Development
-
-See [spec/plan_initial.md](spec/plan_initial.md) for the full implementation plan.
-
-## License
-
-MIT

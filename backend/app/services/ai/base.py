@@ -24,6 +24,7 @@ def get_default_model_config() -> ModelConfig:
         provider=settings.llm_provider,
         model=settings.llm_model,
         temperature=settings.llm_temperature,
+        reasoning_effort=settings.llm_reasoning_effort,
     )
 
 

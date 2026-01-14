@@ -22,6 +22,7 @@ class Settings(BaseSettings):
     llm_provider: Literal["openai", "anthropic", "gemini", "openrouter"] = "gemini"
     llm_model: str = "gemini-3-flash-preview"
     llm_temperature: float = 0.2
+    llm_reasoning_effort: Literal["none", "low", "medium", "high"] = "none"
 
     # LLM API Keys
     google_api_key: str = ""
