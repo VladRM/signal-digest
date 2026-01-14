@@ -1,4 +1,5 @@
 """Application configuration."""
+from typing import Literal
 from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -17,8 +18,18 @@ class Settings(BaseSettings):
     # Database
     database_url: str = "postgresql://sigdig:sigdig_dev@localhost:5432/sigdig"
 
-    # AI Services
+    # LLM Configuration
+    llm_provider: Literal["openai", "anthropic", "gemini", "openrouter"] = "gemini"
+    llm_model: str = "gemini-3-flash-preview"
+    llm_temperature: float = 0.2
+
+    # LLM API Keys
     google_api_key: str = ""
+    openai_api_key: str = ""
+    anthropic_api_key: str = ""
+    openrouter_api_key: str = ""
+
+    # AI Services
     ai_run_timeout_seconds: int = 900
     ai_classification_timeout_seconds: int = 60
     ai_extraction_timeout_seconds: int = 90

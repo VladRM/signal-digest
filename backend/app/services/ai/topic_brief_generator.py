@@ -14,7 +14,7 @@ from app.models.topic import Topic
 from app.models.topic_brief import TopicBrief
 from app.services.ai.base import BaseAIService
 from app.services.ai.prompts import PromptRegistry
-from app.services.ai.constants import MODEL_NAME
+from app.config import settings
 
 
 class ContentReference(BaseModel):
@@ -563,8 +563,8 @@ class TopicBriefGenerator(BaseAIService):
             summary_full=output_dict["summary_full"],
             content_item_ids=content_item_ids,
             content_references=content_references_json,
-            model_provider="google",
-            model_name=MODEL_NAME,
+            model_provider=settings.llm_provider,
+            model_name=settings.llm_model,
             prompt_version="v1.0"
         )
 

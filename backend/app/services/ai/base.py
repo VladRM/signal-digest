@@ -3,10 +3,28 @@
 from abc import ABC, abstractmethod
 from typing import Dict, Any, Optional
 from sqlalchemy.orm import Session
-from langchain_google_genai import ChatGoogleGenerativeAI
 
 from app.config import settings
-from app.services.ai.constants import MODEL_NAME, TEMPERATURE, MAX_RETRIES
+from app.llm import CachedModelFactory, ModelConfig, ProviderCredentials
+
+
+# Module-level factory instance for efficient model caching
+_credentials = ProviderCredentials(
+    google_api_key=settings.google_api_key,
+    openai_api_key=settings.openai_api_key,
+    anthropic_api_key=settings.anthropic_api_key,
+    openrouter_api_key=settings.openrouter_api_key,
+)
+_factory = CachedModelFactory(_credentials)
+
+
+def get_default_model_config() -> ModelConfig:
+    """Get default model configuration from settings."""
+    return ModelConfig(
+        provider=settings.llm_provider,
+        model=settings.llm_model,
+        temperature=settings.llm_temperature,
+    )
 
 
 class BaseAIService(ABC):
@@ -19,12 +37,7 @@ class BaseAIService(ABC):
             db: Database session
         """
         self.db = db
-        self.llm = ChatGoogleGenerativeAI(
-            model=MODEL_NAME,
-            google_api_key=settings.google_api_key,
-            temperature=TEMPERATURE,
-            max_retries=MAX_RETRIES,
-        )
+        self.llm = _factory.create_model(get_default_model_config())
         self.stats = {
             "items_processed": 0,
             "items_succeeded": 0,
