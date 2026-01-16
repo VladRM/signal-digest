@@ -6,6 +6,9 @@ authors = ["Signal Digest Team"]
 readme = "README.md"
 packages = [{include = "app"}]
 
+[tool.poetry.scripts]
+dev = "app.dev:main"
+
 [tool.poetry.dependencies]
 python = "^3.11,<3.14"
 fastapi = "^0.115.5"

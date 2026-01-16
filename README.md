@@ -64,7 +64,7 @@ alembic revision --autogenerate -m "Initial schema"
 alembic upgrade head
 
 # Start FastAPI server
-uvicorn app.main:app --reload
+poetry run dev
 ```
 
 Backend will be available at http://localhost:8000

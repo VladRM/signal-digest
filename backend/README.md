@@ -44,8 +44,8 @@ poetry run alembic upgrade head
 ### Run Development Server
 
 ```bash
-# Run with Poetry
-poetry run uvicorn app.main:app --reload
+# Run with the dev shorthand
+poetry run dev
 
 # Or if you're in the Poetry shell
 uvicorn app.main:app --reload
